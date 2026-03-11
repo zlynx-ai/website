@@ -49,7 +49,7 @@ const standalone: Tutorial[] = [{ title: "MNIST End-to-End", slug: "mnist" }];
 const allTutorials = [...gettingStarted, ...advanced, ...standalone];
 
 // Convert a markdown link like ./05_sharding.md or ../../mnist.md to a router path
-function resolveMarkdownLink(href: string, currentSection?: string): string {
+function resolveMarkdownLink(href: string): string {
   if (href.startsWith("http") || href.startsWith("#")) return href;
 
   // Strip .md
@@ -116,7 +116,6 @@ function MarkdownArticle({ urlPath }: { urlPath: string }) {
   const [content, setContent] = useState<string | null>(null);
   const [error, setError] = useState(false);
   const [activeId, setActiveId] = useState<string>("");
-  const location = useLocation();
 
   // urlPath is like "getting_started/01_installation" or "mnist"
   useEffect(() => {
