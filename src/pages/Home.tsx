@@ -12,7 +12,7 @@ const features = [
   },
   {
     label: "Native Sharding",
-    desc: "Scale from a single GPU to a TPU pod using JAX NamedSharding. DP, FSDP, and TP are controlled by a single string in the config.",
+    desc: "Scale from a single GPU to a TPU pod using JAX NamedSharding. DDP and FSDP are controlled by a single string in the config.",
   },
   {
     label: "Adapters (PEFT)",
@@ -25,7 +25,7 @@ const features = [
 ];
 
 const codeExample = `from zlynx import Z
-from zlynx.trainer import Trainer, TrainerConfig, DatasetConfig
+from zlynx.trainer import Trainer, TrainerConfig
 
 class CNN(Z):
     def __init__(self, key, num_classes=10):
@@ -37,9 +37,9 @@ class CNN(Z):
 
 model = CNN(jax.random.key(42))
 
-trainer = Trainer(model, data, loss_fn,
-    trconfig=TrainerConfig(batch_size=64, sharding="auto"),
-    dsconfig=DatasetConfig(preprocessing_fn=preprocess))
+trainer = Trainer(
+    model, loss_fn, data,
+    config=TrainerConfig(per_device_batch_size=64, sharding="auto"))
 
 trainer.train()`;
 

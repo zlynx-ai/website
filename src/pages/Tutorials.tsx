@@ -37,6 +37,11 @@ const gettingStarted: Tutorial[] = [
     section: "getting_started",
   },
   { title: "Sharding", slug: "05_sharding", section: "getting_started" },
+  {
+    title: "Push to Hub",
+    slug: "06_push_to_hub",
+    section: "getting_started",
+  },
 ];
 
 const advanced: Tutorial[] = [
